@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import Header from "@/components/Header";
-import WeatherCard from "@/components/WeatherCard";
+import CurrentWeatherCard from "@/components/CurrentWeatherCard";
 
 export default function Home() {
   return (
@@ -8,7 +8,7 @@ export default function Home() {
       <Header />
 
       <div className="flex flex-col justify-center p-4">
-        <WeatherCard
+        <CurrentWeatherCard
           location="London"
           iconID="10d"
           temperature={20}

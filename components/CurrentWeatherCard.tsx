@@ -2,7 +2,7 @@ import { WeatherIconID } from "@/lib/utils";
 import WeatherIcon from "@/components/WeatherIcon";
 import { WindIcon, DropletIcon } from "@/components/Icons";
 
-interface WeatherCardProps {
+interface CurrentWeatherCardProps {
   iconID: WeatherIconID;
   location: string;
   temperature: number;
@@ -16,7 +16,7 @@ interface WeatherCardProps {
   pressure: number;
 }
 
-export default function WeatherCard(props: WeatherCardProps) {
+export default function CurrentWeatherCard(props: CurrentWeatherCardProps) {
   return (
     <div className="flex flex-col">
       <div className="flex flex-row items-center justify-center">
