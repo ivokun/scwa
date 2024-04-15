@@ -7,7 +7,7 @@ export default function Home() {
     <main className={cn("flex", "min-h-screen", "flex-col", "lg:p-12")}>
       <Header />
 
-      <div className="flex flex-col justify-center">
+      <div className="flex flex-col justify-center p-4">
         <WeatherCard
           location="London"
           iconID="10d"

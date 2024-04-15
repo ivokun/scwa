@@ -1,9 +1,4 @@
-import {
-  WeatherIconSize,
-  WeatherIconID,
-  weatherToIconURL,
-  cn,
-} from "@/lib/utils";
+import { WeatherIconSize, WeatherIconID, weatherToIconURL } from "@/lib/utils";
 
 interface WeatherIconProps {
   size: WeatherIconSize;
@@ -12,16 +7,15 @@ interface WeatherIconProps {
   height?: number | undefined;
 }
 
+// TODO implement the WeatherIcon component using https://v0.dev/t/H6IEqI7ZmMH
 export default function WeatherIcon(props: WeatherIconProps) {
   const url = weatherToIconURL(props.id, props.size);
   return (
-    <div className={cn("relative", "width-[100px]", "h-[80px]", "mt-[-20px]")}>
-      <img
-        className="rounded-full"
-        src={url}
-        width={props.width}
-        height={props.height}
-      />
-    </div>
+    <img
+      className="rounded-full align-middle"
+      src={url}
+      width={props.width}
+      height={props.height}
+    />
   );
 }

@@ -1,7 +1,6 @@
-"use client";
-
 import { WeatherIconID } from "@/lib/utils";
-import WeatherIcon from "./WeatherIcon";
+import WeatherIcon from "@/components/WeatherIcon";
+import { WindIcon, DropletIcon } from "@/components/Icons";
 
 interface WeatherCardProps {
   iconID: WeatherIconID;
@@ -19,19 +18,23 @@ interface WeatherCardProps {
 
 export default function WeatherCard(props: WeatherCardProps) {
   return (
-    <div className="flex justify-evenly p-4">
-      <div className="flex flex-col">
-        <p className="capitalize">{props.location}</p>
-        <p className="text-6xl tracking-[-1px]">{props.temperature}°</p>
-        <div className="flex items-center">
-          <p className="text-sm">Min: {props.temperatureMin}°</p>
-          <p className="text-sm mx-2">Max: {props.temperatureMax}°</p>
+    <div className="flex flex-col">
+      <div className="flex flex-row items-center justify-center">
+        <WeatherIcon id={props.iconID} size="4x" width={150} height={150} />
+        <div className="flex-col">
+          <p className="text-6xl">{props.temperature}°</p>
+          <p className="capitalize">{props.description}</p>
         </div>
       </div>
       <div className="flex flex-col items-center">
-        <p className="capitalize">{props.description}</p>
-        <WeatherIcon id={props.iconID} size="2x" width={100} height={100} />
-        <p className="text-sm">Feels like {props.feelsLike}°</p>
+        <div className="flex items-center gap-1.5">
+          <DropletIcon className="w-4 h-4 text-gray-500" />
+          <p>Humidity: 10%</p>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <WindIcon className="w-4 h-4 text-gray-500" />
+          <p>Wind: 5 kph</p>
+        </div>
       </div>
     </div>
   );
