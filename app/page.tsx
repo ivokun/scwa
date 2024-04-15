@@ -2,6 +2,7 @@ import { cn } from "@/lib/utils";
 import Header from "@/components/Header";
 import CurrentWeatherCard from "@/components/CurrentWeatherCard";
 import WeatherForecastCard from "@/components/WeatherForecastCard";
+import MiscSection from "@/components/MiscSection";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
           pressure={1013}
         />
         <WeatherForecastCard />
+        <MiscSection />
       </div>
     </main>
   );
