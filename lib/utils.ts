@@ -19,3 +19,14 @@ export function weatherToIcon(weather: string) {
       return "🌈";
   }
 }
+
+// Get the URL for the weather icon from OpenWeatherMap API
+// https://openweathermap.org/weather-conditions
+export function weatherToIconURL(
+  iconID: string,
+  size: "base" | "2x" | "4x" = "base",
+) {
+  return `http://openweathermap.org/img/wn/${iconID}${
+    size === "base" ? "" : `@${size}`
+  }.png`;
+}
