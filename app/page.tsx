@@ -54,7 +54,7 @@ export default function Home() {
       <main className={cn("flex", "min-h-[92vh]", "flex-col", "lg:p-12")}>
         <Header />
 
-        <div className="flex flex-col justify-center p-4 gap-6 lg:items-center lg:gap-12">
+        <div className="flex flex-col justify-center p-4 gap-6 md:items-center md:gap-12">
           <section id="CurrentWeather">
             <CurrentWeatherCard
               location="London"
@@ -75,7 +75,7 @@ export default function Home() {
           </section>
           <section
             id="Misc"
-            className="w-full lg:max-w-[736px] border px-4 rounded-lg"
+            className="w-full border px-4 rounded-lg md:max-w-[736px]"
           >
             <MiscSection
               hourlyForecast={hourlyForecast}
