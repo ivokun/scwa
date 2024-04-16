@@ -13,7 +13,10 @@ type HourlyForecastItem = {
 
 function HourlyForecastCard(forecast: HourlyForecastItem) {
   return (
-    <div className="flex items-center justify-between rounded-lg border p-2 w-full">
+    <div
+      key={forecast.time}
+      className="flex items-center justify-between rounded-lg border p-2 w-full"
+    >
       <p>{forecast.time}</p>
       <p>{forecast.description}</p>
       <p>{forecast.temperature}°</p>
@@ -49,6 +52,21 @@ export default function MiscSection() {
       temperature: 20,
       description: "Cloudy",
     },
+    {
+      time: "03:00",
+      temperature: 22,
+      description: "Sunny",
+    },
+    {
+      time: "06:00",
+      temperature: 18,
+      description: "Rainy",
+    },
+    {
+      time: "09:00",
+      temperature: 25,
+      description: "Sunny",
+    },
   ];
   return (
     <section className="border px-4 rounded-lg">
@@ -57,7 +75,9 @@ export default function MiscSection() {
           <AccordionTrigger>Hourly Forecast</AccordionTrigger>
           <AccordionContent>
             <div className="flex flex-col gap-1">
-              {hourlyForecast.map(HourlyForecastCard)}
+              {hourlyForecast.map((forecast) => (
+                <HourlyForecastCard {...forecast} />
+              ))}
             </div>
           </AccordionContent>
         </AccordionItem>

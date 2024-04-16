@@ -46,7 +46,10 @@ export default function WeatherForecastCard() {
     <ScrollArea className="whitespace-nowrap rounded-md">
       <div className="flex gap-1">
         {forecast.map((f) => (
-          <div className="flex flex-col items-center justify-between rounded-lg border py-4 px-2 w-36">
+          <div
+            key={f.day}
+            className="flex flex-col items-center justify-between rounded-lg border py-4 px-2 w-36"
+          >
             <p>{f.day}</p>
             <p>{f.description}</p>
             <p>

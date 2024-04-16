@@ -2,7 +2,7 @@ import { WeatherIconID } from "@/lib/utils";
 import WeatherIcon from "@/components/WeatherIcon";
 import { WindIcon, DropletIcon } from "@/components/Icons";
 
-interface CurrentWeatherCardProps {
+type CurrentWeatherCardProps = {
   iconID: WeatherIconID;
   location: string;
   temperature: number;
@@ -14,7 +14,7 @@ interface CurrentWeatherCardProps {
   windSpeed: number;
   windDirection: number;
   pressure: number;
-}
+};
 
 export default function CurrentWeatherCard(props: CurrentWeatherCardProps) {
   return (
