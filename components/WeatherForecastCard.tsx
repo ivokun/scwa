@@ -1,4 +1,5 @@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { cn } from "@/lib/utils";
 export default function WeatherForecastCard() {
   const forecast = [
     {
@@ -48,7 +49,17 @@ export default function WeatherForecastCard() {
         {forecast.map((f) => (
           <div
             key={f.day}
-            className="flex flex-col items-center justify-between rounded-lg border py-4 px-2 w-36"
+            className={cn(
+              "flex",
+              "flex-col",
+              "items-center",
+              "justify-between",
+              "rounded-lg",
+              "border",
+              "py-4",
+              "px-2",
+              "w-36",
+            )}
           >
             <p>{f.day}</p>
             <p>{f.description}</p>

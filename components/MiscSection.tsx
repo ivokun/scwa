@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
 
 export type HourlyForecastItem = {
   time: string;
@@ -13,7 +14,17 @@ export type HourlyForecastItem = {
 
 function HourlyForecastCard(forecast: HourlyForecastItem) {
   return (
-    <div className="flex items-center justify-between rounded-lg border p-2 w-full">
+    <div
+      className={cn(
+        "flex",
+        "items-center",
+        "justify-between",
+        "rounded-lg",
+        "border",
+        "p-2",
+        "w-full",
+      )}
+    >
       <p>{forecast.time}</p>
       <div className="flex gap-4">
         <p>{forecast.description}</p>

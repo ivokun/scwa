@@ -51,10 +51,28 @@ export default function Home() {
   ];
   return (
     <>
-      <main className={cn("flex", "min-h-[92vh]", "flex-col", "lg:p-12")}>
+      <main
+        className={cn(
+          "flex",
+          "flex-col",
+          "min-h-[90vh]",
+          "md:min-h-[92vh]",
+          "lg:p-12",
+        )}
+      >
         <Header />
 
-        <div className="flex flex-col justify-center p-4 gap-6 md:items-center md:gap-12">
+        <div
+          className={cn(
+            "flex",
+            "flex-col",
+            "justify-center",
+            "p-4",
+            "gap-6",
+            "md:items-center",
+            "md:gap-12",
+          )}
+        >
           <section id="CurrentWeather">
             <CurrentWeatherCard
               location="London"
@@ -75,7 +93,13 @@ export default function Home() {
           </section>
           <section
             id="Misc"
-            className="w-full border px-4 rounded-lg md:max-w-[736px]"
+            className={cn(
+              "w-full",
+              "border",
+              "px-4",
+              "rounded-lg",
+              "md:max-w-[736px]",
+            )}
           >
             <MiscSection
               hourlyForecast={hourlyForecast}

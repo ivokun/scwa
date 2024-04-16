@@ -1,4 +1,4 @@
-import { WeatherIconID } from "@/lib/utils";
+import { WeatherIconID, cn } from "@/lib/utils";
 import WeatherIcon from "@/components/WeatherIcon";
 import { WindIcon, DropletIcon } from "@/components/Icons";
 
@@ -19,7 +19,7 @@ type CurrentWeatherCardProps = {
 export default function CurrentWeatherCard(props: CurrentWeatherCardProps) {
   return (
     <div className="flex flex-col">
-      <div className="flex flex-row items-center justify-center">
+      <div className={cn("flex", "flex-row", "items-center", "justify-center")}>
         <WeatherIcon id={props.iconID} size="4x" width={150} height={150} />
         <div className="flex-col">
           <p className="text-6xl">{props.temperature}°</p>
