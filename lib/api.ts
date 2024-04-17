@@ -54,6 +54,7 @@ const OpenWeatherMapAPIDailySchema = z.object({
   moonrise: z.number(),
   moonset: z.number(),
   moon_phase: z.number(),
+  summary: z.string(),
   temp: z.object({
     day: z.number().transform(Math.round),
     min: z.number().transform(Math.round),

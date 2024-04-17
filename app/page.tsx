@@ -6,7 +6,7 @@ import Header from "@/components/Header";
 import CurrentWeatherCard from "@/components/CurrentWeatherCard";
 import WeatherForecastCard from "@/components/WeatherForecastCard";
 import MiscSection from "@/components/MiscSection";
-import Footer from "@/components/Footer";
+import { getRandomWeatherAdvice } from "@/lib/advice";
 
 export default async function Home() {
   const userIP = getUserIP(headers());
@@ -23,6 +23,9 @@ export default async function Home() {
       apiKey: serverEnv.OPENWEATHERMAP_API_KEY,
     },
     location,
+  );
+  const currentWeatherAdvice = getRandomWeatherAdvice(
+    weather.current.weather[0].id,
   );
 
   return (
@@ -67,13 +70,12 @@ export default async function Home() {
           >
             <MiscSection
               hourlyForecast={weather.hourly}
-              currentWeatherDetail={weather.current.weather[0].description}
-              currentWeatherAdvice={weather.current.weather[0].description}
+              currentWeatherDetail={weather.daily[0].summary}
+              currentWeatherAdvice={currentWeatherAdvice}
             />
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 }
