@@ -1,54 +1,14 @@
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { cn } from "@/lib/utils";
-export default function WeatherForecastCard() {
-  const forecast = [
-    {
-      day: "Mon",
-      description: "Cloudy",
-      temperature: {
-        min: 20,
-        max: 30,
-      },
-    },
-    {
-      day: "Tue",
-      description: "Sunny",
-      temperature: {
-        min: 22,
-        max: 32,
-      },
-    },
-    {
-      day: "Wed",
-      description: "Rainy",
-      temperature: {
-        min: 18,
-        max: 28,
-      },
-    },
-    {
-      day: "Thu",
-      description: "Sunny",
-      temperature: {
-        min: 25,
-        max: 35,
-      },
-    },
-    {
-      day: "Fri",
-      description: "Cloudy",
-      temperature: {
-        min: 20,
-        max: 30,
-      },
-    },
-  ];
+import WeatherIcon from "@/components/WeatherIcon";
+import { OpenWeatherMapAPI } from "@/lib/api";
+import { cn, parseDateFromTimestamp, WeatherIconID } from "@/lib/utils";
+export default function WeatherForecastCard(props: OpenWeatherMapAPI) {
   return (
     <ScrollArea className="whitespace-nowrap rounded-md">
       <div className="flex gap-1 md:justify-center">
-        {forecast.map((f) => (
+        {props.daily.map((d) => (
           <div
-            key={f.day}
+            key={d.dt}
             className={cn(
               "flex",
               "flex-col",
@@ -61,10 +21,15 @@ export default function WeatherForecastCard() {
               "w-36",
             )}
           >
-            <p>{f.day}</p>
-            <p>{f.description}</p>
+            <p>{parseDateFromTimestamp(d.dt)}</p>
+            <WeatherIcon
+              id={d.weather[0].icon as WeatherIconID}
+              size="base"
+              width={50}
+              height={50}
+            />
             <p>
-              {f.temperature.min}°/{f.temperature.max}°
+              {d.temp.min}°/{d.temp.max}°
             </p>
           </div>
         ))}
