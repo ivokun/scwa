@@ -1,6 +1,5 @@
 import { SSTConfig } from "sst";
 import { NextjsSite } from "sst/constructs";
-import { serverEnv } from "@/lib/env";
 
 export default {
   config(_input) {
