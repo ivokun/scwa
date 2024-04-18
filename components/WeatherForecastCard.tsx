@@ -17,7 +17,7 @@ function WeatherForecastItem(props: OpenWeatherMapAPIDaily) {
     "bg-white",
     "py-4",
     "px-2",
-    "w-36",
+    "w-32",
   ];
   const todayBackground = displayDate === "Today" ? "bg-yellow-200" : "";
   return (
@@ -39,7 +39,7 @@ function WeatherForecastItem(props: OpenWeatherMapAPIDaily) {
 export default function WeatherForecastCard(props: OpenWeatherMapAPI) {
   return (
     <ScrollArea className="whitespace-nowrap rounded-md">
-      <div className="flex gap-2 md:justify-center py-4 pr-4">
+      <div className="flex gap-2 lg:justify-center py-4 pr-4">
         {props.daily.map((daily) => (
           <WeatherForecastItem {...daily} key={daily.dt} />
         ))}
