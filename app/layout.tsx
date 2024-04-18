@@ -1,8 +1,9 @@
 import { headers } from "next/headers";
 import type { Metadata } from "next";
-import { getUserIP } from "@/lib/utils";
+import { cn, getUserIP } from "@/lib/utils";
 import { Inter } from "next/font/google";
 import { serverEnv } from "@/lib/env";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicBackgroundImage from "@/components/DynamicBackgroundImage";
 import {
@@ -44,7 +45,6 @@ export default async function RootLayout({
     {
       baseURL: serverEnv.UNSPLASH_API_URL,
       apiKey: serverEnv.UNSPLASH_API_ACCESS_KEY,
-      secretKey: serverEnv.UNSPLASH_API_SECRET_KEY,
     },
     weather.current.weather[0].main,
   );
@@ -55,7 +55,19 @@ export default async function RootLayout({
           imageURL={bgImages[0].urls.regular}
           imageColor={bgImages[0].color}
         >
-          {children}
+          <div
+            className={cn(
+              "flex",
+              "flex-col",
+              "min-h-[90vh]",
+              "md:min-h-[92vh]",
+              "lg:p-12",
+            )}
+          >
+            <Header />
+
+            {children}
+          </div>
         </DynamicBackgroundImage>
         <Footer />
       </body>

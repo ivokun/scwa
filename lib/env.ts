@@ -9,7 +9,6 @@ const serverEnvSchema = z.object({
   IP2LOCATION_API_URL: z.string().url(),
   UNSPLASH_API_URL: z.string().url(),
   UNSPLASH_API_ACCESS_KEY: z.string().min(1),
-  UNSPLASH_API_SECRET_KEY: z.string().min(1),
 });
 
 const clientEnvSchema = z.object({});
