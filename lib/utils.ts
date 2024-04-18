@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { z } from "zod";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -47,4 +48,45 @@ export function weatherToIconURL(iconID: string, size: WeatherIconSize) {
   return `https://openweathermap.org/img/wn/${iconID}${
     size === "base" ? "" : `@${size}`
   }.png`;
+}
+
+const headersSchema = z.object({
+  "x-forwarded-for": z.string().min(1),
+});
+
+type ParsedHeaders = z.infer<typeof headersSchema>;
+
+function parseHeaders(headers: Headers): ParsedHeaders {
+  const parsedHeaders = headersSchema.safeParse(Object.fromEntries(headers));
+  if (!parsedHeaders.success) {
+    console.error(
+      "❌ Invalid headers:",
+      parsedHeaders.error.flatten().fieldErrors,
+    );
+    throw new Error("Invalid headers");
+  }
+  return parsedHeaders.data;
+}
+
+export function getUserIP(headers: Headers) {
+  const { "x-forwarded-for": ips } = parseHeaders(headers);
+  const ip = ips.split(",")[0];
+  return ip;
+}
+
+// Return time in HH:MM format
+export function parseTimeFromTimestamp(timestamp: number) {
+  return new Date(timestamp * 1000).toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+export function parseDateFromTimestamp(timestamp: number) {
+  const today = new Date();
+  const date = new Date(timestamp * 1000);
+  if (today.toDateString() === date.toDateString()) {
+    return "Today";
+  }
+  return date.toLocaleDateString();
 }

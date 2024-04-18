@@ -4,15 +4,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { cn } from "@/lib/utils";
+import type { OpenWeatherMapAPIHourly } from "@/lib/api";
+import WeatherIcon from "@/components/WeatherIcon";
+import { cn, parseTimeFromTimestamp, WeatherIconID } from "@/lib/utils";
 
-export type HourlyForecastItem = {
-  time: string;
-  temperature: number;
-  description: string;
-};
-
-function HourlyForecastCard(forecast: HourlyForecastItem) {
+function HourlyForecastCard(forecast: OpenWeatherMapAPIHourly) {
   return (
     <div
       className={cn(
@@ -21,21 +17,26 @@ function HourlyForecastCard(forecast: HourlyForecastItem) {
         "justify-between",
         "rounded-lg",
         "border",
-        "p-2",
+        "px-2",
         "w-full",
       )}
     >
-      <p>{forecast.time}</p>
-      <div className="flex gap-4">
-        <p>{forecast.description}</p>
-        <p>{forecast.temperature}°</p>
+      <p>{parseTimeFromTimestamp(forecast.dt)}</p>
+      <div className="flex items-center">
+        <WeatherIcon
+          id={forecast.weather[0].icon as WeatherIconID}
+          size="base"
+          width={50}
+          height={50}
+        />
+        <p>{forecast.temp}°</p>
       </div>
     </div>
   );
 }
 
 export default function MiscSection(props: {
-  hourlyForecast: HourlyForecastItem[];
+  hourlyForecast: Array<OpenWeatherMapAPIHourly>;
   currentWeatherDetail: string;
   currentWeatherAdvice: string;
 }) {
@@ -46,7 +47,7 @@ export default function MiscSection(props: {
         <AccordionContent>
           <div className="flex flex-col gap-1">
             {props.hourlyForecast.map((forecast) => (
-              <HourlyForecastCard {...forecast} key={forecast.time} />
+              <HourlyForecastCard {...forecast} key={forecast.dt} />
             ))}
           </div>
         </AccordionContent>

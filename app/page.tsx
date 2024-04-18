@@ -1,54 +1,33 @@
-import { cn } from "@/lib/utils";
+import { headers } from "next/headers";
+import { cn, getUserIP } from "@/lib/utils";
+import { serverEnv } from "@/lib/env";
+import { getAllWeatherDataFromLocation, getUserCityFromIP } from "@/lib/api";
 import Header from "@/components/Header";
 import CurrentWeatherCard from "@/components/CurrentWeatherCard";
 import WeatherForecastCard from "@/components/WeatherForecastCard";
 import MiscSection from "@/components/MiscSection";
-import Footer from "@/components/Footer";
+import { getRandomWeatherAdvice } from "@/lib/advice";
 
-export default function Home() {
-  const hourlyForecast = [
+export default async function Home() {
+  const userIP = getUserIP(headers());
+  const location = await getUserCityFromIP(
     {
-      time: "12:00",
-      temperature: 20,
-      description: "Cloudy",
+      baseURL: serverEnv.IP2LOCATION_API_URL,
+      apiKey: serverEnv.IP2LOCATION_API_KEY,
     },
+    userIP,
+  );
+  const weather = await getAllWeatherDataFromLocation(
     {
-      time: "15:00",
-      temperature: 22,
-      description: "Sunny",
+      baseURL: serverEnv.OPENWEATHERMAP_API_URL,
+      apiKey: serverEnv.OPENWEATHERMAP_API_KEY,
     },
-    {
-      time: "18:00",
-      temperature: 18,
-      description: "Rainy",
-    },
-    {
-      time: "21:00",
-      temperature: 25,
-      description: "Sunny",
-    },
+    location,
+  );
+  const currentWeatherAdvice = getRandomWeatherAdvice(
+    weather.current.weather[0].id,
+  );
 
-    {
-      time: "00:00",
-      temperature: 20,
-      description: "Cloudy",
-    },
-    {
-      time: "03:00",
-      temperature: 22,
-      description: "Sunny",
-    },
-    {
-      time: "06:00",
-      temperature: 18,
-      description: "Rainy",
-    },
-    {
-      time: "09:00",
-      temperature: 25,
-      description: "Sunny",
-    },
-  ];
   return (
     <>
       <main
@@ -74,22 +53,10 @@ export default function Home() {
           )}
         >
           <section id="CurrentWeather">
-            <CurrentWeatherCard
-              location="London"
-              iconID="10d"
-              temperature={20}
-              temperatureMin={18}
-              temperatureMax={22}
-              description="Cloudy"
-              feelsLike={22}
-              humidity={80}
-              windSpeed={5}
-              windDirection={180}
-              pressure={1013}
-            />
+            <CurrentWeatherCard {...weather.current} />
           </section>
           <section id="FiveDaysForecast">
-            <WeatherForecastCard />
+            <WeatherForecastCard {...weather} />
           </section>
           <section
             id="Misc"
@@ -102,14 +69,13 @@ export default function Home() {
             )}
           >
             <MiscSection
-              hourlyForecast={hourlyForecast}
-              currentWeatherDetail="scatered sunny"
-              currentWeatherAdvice="okay"
+              hourlyForecast={weather.hourly}
+              currentWeatherDetail={weather.daily[0].summary}
+              currentWeatherAdvice={currentWeatherAdvice}
             />
           </section>
         </div>
       </main>
-      <Footer />
     </>
   );
 }
