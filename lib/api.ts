@@ -42,7 +42,7 @@ const OpenWeatherMapAPIHourlySchema = z.object({
   visibility: z.number(),
   wind_speed: z.number(),
   wind_deg: z.number(),
-  weather: z.array(OpenWeatherMapAPIWeatherSchema).length(1),
+  weather: z.array(OpenWeatherMapAPIWeatherSchema).min(1),
   pop: z.number(),
 });
 type OpenWeatherMapAPIHourly = z.infer<typeof OpenWeatherMapAPIHourlySchema>;
@@ -74,7 +74,7 @@ const OpenWeatherMapAPIDailySchema = z.object({
   dew_point: z.number(),
   wind_speed: z.number(),
   wind_deg: z.number(),
-  weather: z.array(OpenWeatherMapAPIWeatherSchema).length(1),
+  weather: z.array(OpenWeatherMapAPIWeatherSchema).min(1),
   clouds: z.number(),
   pop: z.number(),
   uvi: z.number(),
@@ -95,7 +95,7 @@ const OpenWeatherMapAPICurrentWeatherSchema = z.object({
   visibility: z.number(),
   wind_speed: z.number(),
   wind_deg: z.number(),
-  weather: z.array(OpenWeatherMapAPIWeatherSchema).length(1),
+  weather: z.array(OpenWeatherMapAPIWeatherSchema).min(1),
 });
 type OpenWeatherMapAPICurrentWeather = z.infer<
   typeof OpenWeatherMapAPICurrentWeatherSchema
@@ -146,9 +146,9 @@ async function getWeatherDataFromLocation(
   const parsed = OpenWeatherMapAPISchema.safeParse(json);
   if (!parsed.success) {
     throw new Error(
-      `Error parsing OpenWeatherMap API data: ${
-        parsed.error.flatten().fieldErrors
-      }`,
+      `Error parsing OpenWeatherMap API data: ${JSON.stringify(
+        parsed.error.flatten().fieldErrors,
+      )}`,
     );
   }
   return parsed.data;

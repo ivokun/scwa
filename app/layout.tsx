@@ -27,7 +27,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const userIP = getUserIP(headers());
-  console.log(userIP);
   const location = await getUserCityFromIP(
     {
       baseURL: serverEnv.IP2LOCATION_API_URL,
