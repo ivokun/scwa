@@ -41,7 +41,7 @@ export default async function Home() {
         )}
       >
         <section id="CurrentWeather">
-          <CurrentWeatherCard {...weather.current} />
+          <CurrentWeatherCard current={weather.current} location={location} />
         </section>
         <section id="FiveDaysForecast">
           <WeatherForecastCard {...weather} />

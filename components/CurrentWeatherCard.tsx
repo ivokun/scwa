@@ -1,33 +1,42 @@
 import { WeatherIconID, cn } from "@/lib/utils";
 import WeatherIcon from "@/components/WeatherIcon";
 import { WindIcon, DropletIcon } from "@/components/Icons";
-import type { OpenWeatherMapAPICurrentWeather } from "@/lib/api";
+import type {
+  IP2LocationAPI,
+  OpenWeatherMapAPICurrentWeather,
+} from "@/lib/api";
 
-export default function CurrentWeatherCard(
-  props: OpenWeatherMapAPICurrentWeather,
-) {
+export default function CurrentWeatherCard(props: {
+  current: OpenWeatherMapAPICurrentWeather;
+  location: IP2LocationAPI;
+}) {
   return (
     <div className="flex flex-col">
+      <div className="flex gap-2 p-4 bg-white border border-black shadow-brutalism rounded-sm self-center">
+        {props.location.city_name}
+      </div>
       <div className={cn("flex", "flex-row", "items-center", "justify-center")}>
         <WeatherIcon
-          id={props.weather[0].icon as WeatherIconID}
+          id={props.current.weather[0].icon as WeatherIconID}
           size="4x"
           width={150}
           height={150}
         />
         <div className="flex-col">
-          <p className="text-6xl">{props.temp}°</p>
-          <p className="capitalize">{props.weather[0].main}</p>
+          <p className="text-6xl font-bold">{props.current.temp}°</p>
+          <p className="capitalize font-bold">
+            {props.current.weather[0].main}
+          </p>
         </div>
       </div>
       <div className="flex flex-col items-center">
         <div className="flex items-center gap-1.5">
           <DropletIcon className="w-4 h-4 text-gray-500" />
-          <p>Humidity: {props.humidity}%</p>
+          <p>Humidity: {props.current.humidity}%</p>
         </div>
         <div className="flex items-center gap-1.5">
           <WindIcon className="w-4 h-4 text-gray-500" />
-          <p>Wind: {props.wind_speed} m/s</p>
+          <p>Wind: {props.current.wind_speed} m/s</p>
         </div>
       </div>
     </div>
