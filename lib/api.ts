@@ -114,7 +114,7 @@ const OpenWeatherMapAPISchema = z.object({
     }),
   ),
   hourly: z.array(OpenWeatherMapAPIHourlySchema),
-  daily: z.array(OpenWeatherMapAPIDailySchema).transform((d) => d.slice(0, 5)),
+  daily: z.array(OpenWeatherMapAPIDailySchema).transform((d) => d.slice(0, 6)),
   alerts: z
     .array(
       z.object({
