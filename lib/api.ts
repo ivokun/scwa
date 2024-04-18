@@ -8,8 +8,8 @@ const DEFAULT_LOCATION: IP2LocationAPI = {
   city_name: "Surabaya",
   zip_code: "60175",
   time_zone: "Asia/Jakarta",
-  latitude: "-7.2492",
-  longitude: "112.7508",
+  latitude: -7.2492,
+  longitude: 112.7508,
   as: "AS7713 TELKOMNET-AS-AP PT Telekomunikasi Indonesia",
   asn: "7713",
   is_proxy: false,
@@ -18,7 +18,6 @@ const DEFAULT_LOCATION: IP2LocationAPI = {
 type APIConfig = {
   baseURL: string;
   apiKey: string;
-  secretKey?: string;
 };
 
 // OpenWeatherMap API v3.0
@@ -132,12 +131,12 @@ type OpenWeatherMapAPI = z.infer<typeof OpenWeatherMapAPISchema>;
 
 async function getWeatherDataFromLocation(
   config: APIConfig,
-  location: { latitude: string; longitude: string },
+  location: { latitude: number; longitude: number },
   units: string = "metric",
 ): Promise<OpenWeatherMapAPI> {
   const queries = new URLSearchParams({
-    lat: location.latitude,
-    lon: location.longitude,
+    lat: location.latitude.toString(),
+    lon: location.longitude.toString(),
     units,
     appid: config.apiKey,
   });
@@ -157,7 +156,7 @@ async function getWeatherDataFromLocation(
 
 async function getAllWeatherDataFromLocation(
   config: APIConfig,
-  location: { latitude: string; longitude: string },
+  location: { latitude: number; longitude: number },
 ) {
   const data = await getWeatherDataFromLocation(config, location);
   return data;
@@ -166,8 +165,8 @@ async function getAllWeatherDataFromLocation(
 // IP2Location API
 // reference: https://www.ip2location.io/ip2location-documentation
 const IP2LocationAPISchema = z.object({
-  latitude: z.string(),
-  longitude: z.string(),
+  latitude: z.number(),
+  longitude: z.number(),
   ip: z.string(),
   country_code: z.string(),
   country_name: z.string(),
@@ -201,7 +200,7 @@ async function getUserCityFromIP(
     key: config.apiKey,
     ip: ipAddress,
   });
-  const url = new URL(queries.toString(), config.baseURL);
+  const url = new URL(`/?${queries.toString()}`, config.baseURL);
   const response = await fetch(url, { next: { revalidate: 600 } });
   const json = await response.json();
   const parsed = IP2LocationAPISchema.safeParse(json);

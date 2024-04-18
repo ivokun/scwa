@@ -26,6 +26,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const userIP = getUserIP(headers());
+  console.log(userIP);
   const location = await getUserCityFromIP(
     {
       baseURL: serverEnv.IP2LOCATION_API_URL,
@@ -44,7 +45,6 @@ export default async function RootLayout({
     {
       baseURL: serverEnv.UNSPLASH_API_URL,
       apiKey: serverEnv.UNSPLASH_API_ACCESS_KEY,
-      secretKey: serverEnv.UNSPLASH_API_SECRET_KEY,
     },
     weather.current.weather[0].main,
   );
