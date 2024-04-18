@@ -2,7 +2,6 @@ import { headers } from "next/headers";
 import { cn, getUserIP } from "@/lib/utils";
 import { serverEnv } from "@/lib/env";
 import { getAllWeatherDataFromLocation, getUserCityFromIP } from "@/lib/api";
-import Header from "@/components/Header";
 import CurrentWeatherCard from "@/components/CurrentWeatherCard";
 import WeatherForecastCard from "@/components/WeatherForecastCard";
 import MiscSection from "@/components/MiscSection";
@@ -29,17 +28,7 @@ export default async function Home() {
   );
 
   return (
-    <main
-      className={cn(
-        "flex",
-        "flex-col",
-        "min-h-[90vh]",
-        "md:min-h-[92vh]",
-        "lg:p-12",
-      )}
-    >
-      <Header />
-
+    <main>
       <div
         className={cn(
           "flex",
