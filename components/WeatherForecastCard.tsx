@@ -11,8 +11,11 @@ function WeatherForecastItem(props: OpenWeatherMapAPIDaily) {
         "flex-col",
         "items-center",
         "justify-between",
-        "rounded-lg",
+        "rounded-sm",
         "border",
+        "border-black",
+        "shadow-brutalism",
+        "bg-white",
         "py-4",
         "px-2",
         "w-36",
@@ -35,7 +38,7 @@ function WeatherForecastItem(props: OpenWeatherMapAPIDaily) {
 export default function WeatherForecastCard(props: OpenWeatherMapAPI) {
   return (
     <ScrollArea className="whitespace-nowrap rounded-md">
-      <div className="flex gap-1 md:justify-center">
+      <div className="flex gap-2 md:justify-center py-4 pr-4">
         {props.daily.map((daily) => (
           <WeatherForecastItem {...daily} key={daily.dt} />
         ))}

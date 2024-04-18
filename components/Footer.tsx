@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 
 export default function Footer() {
   return (
-    <footer className="p-4 border-t">
+    <footer className="p-4 border-t border-black">
       <div
         className={cn(
           "text-xs",

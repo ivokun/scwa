@@ -15,8 +15,9 @@ function HourlyForecastCard(forecast: OpenWeatherMapAPIHourly) {
         "flex",
         "items-center",
         "justify-between",
-        "rounded-lg",
+        "rounded-sm",
         "border",
+        "border-black",
         "px-2",
         "w-full",
       )}
@@ -41,31 +42,39 @@ export default function MiscSection(props: {
   currentWeatherAdvice: string;
 }) {
   return (
-    <div className="z-10">
-      <Accordion type="multiple">
-        <AccordionItem value="hourly-forcast">
-          <AccordionTrigger>Hourly Forecast</AccordionTrigger>
-          <AccordionContent>
-            <div className="flex flex-col gap-1">
-              {props.hourlyForecast.map((forecast) => (
-                <HourlyForecastCard {...forecast} key={forecast.dt} />
-              ))}
-            </div>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="detail">
-          <AccordionTrigger>Detail</AccordionTrigger>
-          <AccordionContent>
-            <p>{props.currentWeatherDetail}</p>
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="Advice">
-          <AccordionTrigger>Advice</AccordionTrigger>
-          <AccordionContent>
-            <p>{props.currentWeatherAdvice}</p>
-          </AccordionContent>
-        </AccordionItem>
-      </Accordion>
-    </div>
+    <Accordion
+      type="multiple"
+      className={cn(
+        "px-4",
+        "border",
+        "border-black",
+        "rounded-sm",
+        "bg-white",
+        "shadow-brutalism",
+      )}
+    >
+      <AccordionItem value="hourly-forcast">
+        <AccordionTrigger>Hourly Forecast</AccordionTrigger>
+        <AccordionContent>
+          <div className="flex flex-col gap-1">
+            {props.hourlyForecast.map((forecast) => (
+              <HourlyForecastCard {...forecast} key={forecast.dt} />
+            ))}
+          </div>
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="detail">
+        <AccordionTrigger>Detail</AccordionTrigger>
+        <AccordionContent>
+          <p>{props.currentWeatherDetail}</p>
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="Advice">
+        <AccordionTrigger>Advice</AccordionTrigger>
+        <AccordionContent>
+          <p>{props.currentWeatherAdvice}</p>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 }

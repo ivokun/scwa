@@ -57,16 +57,7 @@ export default async function Home() {
         <section id="FiveDaysForecast">
           <WeatherForecastCard {...weather} />
         </section>
-        <section
-          id="Misc"
-          className={cn(
-            "w-full",
-            "border",
-            "px-4",
-            "rounded-lg",
-            "md:max-w-[736px]",
-          )}
-        >
+        <section id="Misc" className={cn("w-full", "md:max-w-[736px]")}>
           <MiscSection
             hourlyForecast={weather.hourly}
             currentWeatherDetail={weather.daily[0].summary}
