@@ -220,6 +220,7 @@ const UnsplashAPISchema = z.object({
   width: z.number(),
   height: z.number(),
   description: z.string().nullable(),
+  color: z.string(),
   user: z.object({
     name: z.string(),
     links: z.object({
