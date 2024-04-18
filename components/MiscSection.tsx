@@ -41,29 +41,31 @@ export default function MiscSection(props: {
   currentWeatherAdvice: string;
 }) {
   return (
-    <Accordion type="multiple">
-      <AccordionItem value="hourly-forcast">
-        <AccordionTrigger>Hourly Forecast</AccordionTrigger>
-        <AccordionContent>
-          <div className="flex flex-col gap-1">
-            {props.hourlyForecast.map((forecast) => (
-              <HourlyForecastCard {...forecast} key={forecast.dt} />
-            ))}
-          </div>
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="detail">
-        <AccordionTrigger>Detail</AccordionTrigger>
-        <AccordionContent>
-          <p>{props.currentWeatherDetail}</p>
-        </AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="Advice">
-        <AccordionTrigger>Advice</AccordionTrigger>
-        <AccordionContent>
-          <p>{props.currentWeatherAdvice}</p>
-        </AccordionContent>
-      </AccordionItem>
-    </Accordion>
+    <div className="z-10">
+      <Accordion type="multiple">
+        <AccordionItem value="hourly-forcast">
+          <AccordionTrigger>Hourly Forecast</AccordionTrigger>
+          <AccordionContent>
+            <div className="flex flex-col gap-1">
+              {props.hourlyForecast.map((forecast) => (
+                <HourlyForecastCard {...forecast} key={forecast.dt} />
+              ))}
+            </div>
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="detail">
+          <AccordionTrigger>Detail</AccordionTrigger>
+          <AccordionContent>
+            <p>{props.currentWeatherDetail}</p>
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="Advice">
+          <AccordionTrigger>Advice</AccordionTrigger>
+          <AccordionContent>
+            <p>{props.currentWeatherAdvice}</p>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </div>
   );
 }
