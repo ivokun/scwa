@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      boxShadow: {
+        brutalism: "0.4rem 0.4rem 0 #222",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

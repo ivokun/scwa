@@ -15,8 +15,9 @@ function HourlyForecastCard(forecast: OpenWeatherMapAPIHourly) {
         "flex",
         "items-center",
         "justify-between",
-        "rounded-lg",
+        "rounded-sm",
         "border",
+        "border-black",
         "px-2",
         "w-full",
       )}
@@ -41,7 +42,17 @@ export default function MiscSection(props: {
   currentWeatherAdvice: string;
 }) {
   return (
-    <Accordion type="multiple">
+    <Accordion
+      type="multiple"
+      className={cn(
+        "px-4",
+        "border",
+        "border-black",
+        "rounded-sm",
+        "bg-white",
+        "shadow-brutalism",
+      )}
+    >
       <AccordionItem value="hourly-forcast">
         <AccordionTrigger>Hourly Forecast</AccordionTrigger>
         <AccordionContent>

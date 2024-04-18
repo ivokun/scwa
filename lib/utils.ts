@@ -88,5 +88,8 @@ export function parseDateFromTimestamp(timestamp: number) {
   if (today.toDateString() === date.toDateString()) {
     return "Today";
   }
-  return date.toLocaleDateString();
+  return date.toLocaleDateString([], {
+    day: "numeric",
+    month: "short",
+  });
 }

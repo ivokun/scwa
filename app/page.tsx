@@ -29,53 +29,42 @@ export default async function Home() {
   );
 
   return (
-    <>
-      <main
+    <main
+      className={cn(
+        "flex",
+        "flex-col",
+        "min-h-[90vh]",
+        "md:min-h-[92vh]",
+        "lg:p-12",
+      )}
+    >
+      <Header />
+
+      <div
         className={cn(
           "flex",
           "flex-col",
-          "min-h-[90vh]",
-          "md:min-h-[92vh]",
-          "lg:p-12",
+          "justify-center",
+          "p-4",
+          "gap-6",
+          "md:items-center",
+          "md:gap-12",
         )}
       >
-        <Header />
-
-        <div
-          className={cn(
-            "flex",
-            "flex-col",
-            "justify-center",
-            "p-4",
-            "gap-6",
-            "md:items-center",
-            "md:gap-12",
-          )}
-        >
-          <section id="CurrentWeather">
-            <CurrentWeatherCard {...weather.current} />
-          </section>
-          <section id="FiveDaysForecast">
-            <WeatherForecastCard {...weather} />
-          </section>
-          <section
-            id="Misc"
-            className={cn(
-              "w-full",
-              "border",
-              "px-4",
-              "rounded-lg",
-              "md:max-w-[736px]",
-            )}
-          >
-            <MiscSection
-              hourlyForecast={weather.hourly}
-              currentWeatherDetail={weather.daily[0].summary}
-              currentWeatherAdvice={currentWeatherAdvice}
-            />
-          </section>
-        </div>
-      </main>
-    </>
+        <section id="CurrentWeather">
+          <CurrentWeatherCard {...weather.current} />
+        </section>
+        <section id="FiveDaysForecast">
+          <WeatherForecastCard {...weather} />
+        </section>
+        <section id="Misc" className={cn("w-full", "md:max-w-[736px]")}>
+          <MiscSection
+            hourlyForecast={weather.hourly}
+            currentWeatherDetail={weather.daily[0].summary}
+            currentWeatherAdvice={currentWeatherAdvice}
+          />
+        </section>
+      </div>
+    </main>
   );
 }
