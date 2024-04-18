@@ -51,7 +51,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <DynamicBackgroundImage imageURL={bgImages[0].urls.regular}>
+        <DynamicBackgroundImage
+          imageURL={bgImages[0].urls.regular}
+          imageColor={bgImages[0].color}
+        >
           {children}
         </DynamicBackgroundImage>
         <Footer />
