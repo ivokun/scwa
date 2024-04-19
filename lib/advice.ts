@@ -375,6 +375,34 @@ const weatherAdvice: WeatherAdvice = {
     "Monitor the weather forecast and be prepared for any potential changes in the coming hours or days.",
     "Stay hydrated and take breaks if participating in physical activities under the partly cloudy sky.",
   ],
+  "802": [
+    "Enjoy the mixed weather conditions and consider a variety of outdoor activities.",
+    "Be prepared for the possibility of some passing clouds or brief periods of shade.",
+    "Protect your skin from the sun's UV rays when the sun is visible, using sunscreen and appropriate clothing.",
+    "Monitor the weather forecast and be prepared to adjust your plans if the cloud cover increases or decreases.",
+    "Stay hydrated and be mindful of changing weather conditions while enjoying outdoor activities.",
+  ],
+  "803": [
+    "Take advantage of the variable cloud cover and consider a mix of indoor and outdoor activities.",
+    "Be prepared for periods of sunshine and shade, and adjust your clothing and sun protection accordingly.",
+    "Enjoy the changing scenery and the visual interest provided by the broken cloud patterns.",
+    "Monitor the weather forecast and be prepared to seek shelter if the cloud cover becomes more extensive.",
+    "Stay hydrated and be mindful of any potential changes in wind, temperature, or precipitation as the day progresses.",
+  ],
+  "804": [
+    "Dress appropriately for the cooler, less sunny conditions and be prepared for the possibility of precipitation.",
+    "Consider indoor activities or plan for sheltered outdoor pursuits, such as visiting a park with covered areas.",
+    "Avoid direct sun exposure, as the overcast conditions may make it harder to gauge the strength of the UV rays.",
+    "Monitor the weather forecast and be prepared to adjust your plans if the cloud cover thickens or the conditions change.",
+    "Stay hydrated and be mindful of any changes in the weather, as the overcast conditions can sometimes precede more significant weather events.",
+  ],
+  "900": [
+    "Be cautious and prepared for the possibility of various types of precipitation, as the weather conditions are uncertain.",
+    "Monitor weather reports and local weather updates to stay informed about the developing situation.",
+    "Dress in layers and have appropriate rain or snow gear on hand, depending on the potential precipitation.",
+    "Consider postponing or modifying outdoor plans until the nature of the precipitation is clear.",
+    "Be vigilant for any signs of changes in the weather and be ready to seek shelter if necessary.",
+  ],
 };
 
 function getWeatherAdvice(weatherCode: number): string[] {
