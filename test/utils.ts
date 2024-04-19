@@ -1,4 +1,5 @@
-import { IP2LocationAPI, OpenWeatherMapAPIDaily } from "../lib/api";
+import { OpenWeatherMapAPIDaily } from "../lib/api/owm";
+import { IP2LocationAPI } from "../lib/api/location";
 
 function generateLocation(): IP2LocationAPI {
   return {

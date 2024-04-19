@@ -409,7 +409,7 @@ function getWeatherAdvice(weatherCode: number): string[] {
   if (weatherAdvice[weatherCode.toString()]) {
     return weatherAdvice[weatherCode.toString()];
   } else {
-    console.log(
+    console.warn(
       "Advice not available for the given weather code.",
       weatherCode.toString(),
     );
