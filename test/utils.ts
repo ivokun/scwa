@@ -1,4 +1,4 @@
-import { IP2LocationAPI } from "../lib/api";
+import { IP2LocationAPI, OpenWeatherMapAPIDaily } from "../lib/api";
 
 function generateLocation(): IP2LocationAPI {
   return {
@@ -53,4 +53,48 @@ function generateHourlyForecast() {
   ];
 }
 
-export { generateLocation, generateCurrentWeather, generateHourlyForecast };
+function generateDailyWeatherForecast(): OpenWeatherMapAPIDaily[] {
+  return [
+    {
+      dt: 1629781200,
+      sunrise: 1629781200,
+      sunset: 1629781200,
+      moonrise: 1629781200,
+      moonset: 1629781200,
+      moon_phase: 0.5,
+      summary: "clear sky",
+      temp: {
+        day: 20,
+        min: 10,
+        max: 30,
+        night: 20,
+        eve: 20,
+        morn: 20,
+      },
+      feels_like: {
+        day: 20,
+        night: 20,
+        eve: 20,
+        morn: 20,
+      },
+      pressure: 1010,
+      humidity: 50,
+      dew_point: 10,
+      wind_speed: 10,
+      wind_deg: 180,
+      weather: [
+        { id: 800, main: "Clear", description: "clear sky", icon: "01d" },
+      ],
+      clouds: 0,
+      pop: 0,
+      uvi: 5,
+    },
+  ];
+}
+
+export {
+  generateLocation,
+  generateCurrentWeather,
+  generateHourlyForecast,
+  generateDailyWeatherForecast,
+};

@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import MiscSection from "./MiscSection";
 import { generateHourlyForecast } from "@/test/utils";
 
-test("renders the current weather card", async () => {
+test("renders the MiscSection", async () => {
   const hourlyForecast = generateHourlyForecast();
   const currentWeatherDetail = "Sunshine and rainbows.";
   const currentWeatherAdvice = "Bring an umbrella.";
