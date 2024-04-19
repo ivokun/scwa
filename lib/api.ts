@@ -104,28 +104,9 @@ type OpenWeatherMapAPICurrentWeather = z.infer<
 const OpenWeatherMapAPISchema = z.object({
   lat: z.number(),
   lon: z.number(),
-  timezone: z.string(),
-  timezone_offset: z.number(),
   current: OpenWeatherMapAPICurrentWeatherSchema,
-  minutely: z.array(
-    z.object({
-      dt: z.number(),
-      precipitation: z.number(),
-    }),
-  ),
   hourly: z.array(OpenWeatherMapAPIHourlySchema),
   daily: z.array(OpenWeatherMapAPIDailySchema).transform((d) => d.slice(0, 6)),
-  alerts: z
-    .array(
-      z.object({
-        sender_name: z.string(),
-        event: z.string(),
-        start: z.number(),
-        end: z.number(),
-        description: z.string(),
-      }),
-    )
-    .optional(),
 });
 type OpenWeatherMapAPI = z.infer<typeof OpenWeatherMapAPISchema>;
 
@@ -258,7 +239,7 @@ async function getUnsplashImageURLs(
     client_id: config.apiKey,
   });
   const url = new URL(`/photos/random?${queries.toString()}`, config.baseURL);
-  const response = await fetch(url, { next: { revalidate: 3600 } });
+  const response = await fetch(url, { next: { revalidate: 600 } });
   const json = await response.json();
   const parsed = z.array(UnsplashAPISchema).safeParse(json);
   if (!parsed.success) {
