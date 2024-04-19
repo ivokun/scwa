@@ -31,4 +31,26 @@ function generateCurrentWeather() {
   };
 }
 
-export { generateLocation, generateCurrentWeather };
+function generateHourlyForecast() {
+  return [
+    {
+      dt: 1629781200,
+      temp: 20,
+      feels_like: 20,
+      pressure: 1010,
+      humidity: 50,
+      dew_point: 10,
+      uvi: 5,
+      clouds: 0,
+      visibility: 10000,
+      wind_speed: 10,
+      wind_deg: 180,
+      weather: [
+        { id: 800, main: "Clear", description: "clear sky", icon: "01d" },
+      ],
+      pop: 0,
+    },
+  ];
+}
+
+export { generateLocation, generateCurrentWeather, generateHourlyForecast };
