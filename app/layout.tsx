@@ -39,7 +39,7 @@ export default async function RootLayout({
     },
     location,
   );
-  const bgImages = await getRandomUnsplashImageURL(
+  const bgImage = await getRandomUnsplashImageURL(
     {
       baseURL: serverEnv.UNSPLASH_API_URL,
       apiKey: serverEnv.UNSPLASH_API_ACCESS_KEY,
@@ -50,8 +50,8 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <DynamicBackgroundImage
-          imageURL={bgImages.urls.regular}
-          imageColor={bgImages.color}
+          imageURL={bgImage.urls.regular}
+          imageColor={bgImage.color}
         >
           <div
             className={cn(
@@ -67,7 +67,10 @@ export default async function RootLayout({
             {children}
           </div>
         </DynamicBackgroundImage>
-        <Footer />
+        <Footer
+          authorURL={bgImage.user.links.html}
+          photoAuthor={bgImage.user.name}
+        />
       </body>
     </html>
   );
