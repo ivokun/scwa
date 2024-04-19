@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { APIConfig } from "@/lib/api/utils";
 
 // Unsplash API
 // reference: https://unsplash.com/documentation
