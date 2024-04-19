@@ -1,4 +1,6 @@
-import { WeatherIconID, cn } from "@/lib/utils";
+"use client";
+
+import { WeatherIconID, cn, parseUpdateTimeFromTimestamp } from "@/lib/utils";
 import WeatherIcon from "@/components/WeatherIcon";
 import { WindIcon, DropletIcon } from "@/components/Icons";
 import type {
@@ -12,8 +14,11 @@ export default function CurrentWeatherCard(props: {
 }) {
   return (
     <div className="flex flex-col">
-      <div className="flex gap-2 p-4 bg-white border border-black shadow-brutalism rounded-sm self-center">
-        {props.location.city_name}
+      <div className="flex flex-col gap-1 p-4 bg-white border border-black shadow-brutalism rounded-sm self-center items-center">
+        <p className="text-2xl">{props.location.city_name}</p>
+        <span className="text-[0.7rem]">
+          Updated at: {parseUpdateTimeFromTimestamp(props.current.dt)}
+        </span>
       </div>
       <div className={cn("flex", "flex-row", "items-center", "justify-center")}>
         <WeatherIcon

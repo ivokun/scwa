@@ -1,3 +1,5 @@
+"use client";
+
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import WeatherIcon from "@/components/WeatherIcon";
 import { OpenWeatherMapAPI, OpenWeatherMapAPIDaily } from "@/lib/api";
