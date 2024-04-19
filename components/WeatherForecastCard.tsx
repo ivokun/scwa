@@ -2,7 +2,7 @@
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import WeatherIcon from "@/components/WeatherIcon";
-import { OpenWeatherMapAPI, OpenWeatherMapAPIDaily } from "@/lib/api";
+import { OpenWeatherMapAPI, OpenWeatherMapAPIDaily } from "@/lib/api/owm";
 import { cn, parseDateFromTimestamp, WeatherIconID } from "@/lib/utils";
 
 function WeatherForecastItem(props: OpenWeatherMapAPIDaily) {

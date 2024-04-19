@@ -3,15 +3,45 @@
 import { WeatherIconID, cn, parseUpdateTimeFromTimestamp } from "@/lib/utils";
 import WeatherIcon from "@/components/WeatherIcon";
 import { WindIcon, DropletIcon } from "@/components/Icons";
-import type {
-  IP2LocationAPI,
-  OpenWeatherMapAPICurrentWeather,
-} from "@/lib/api";
+import type { IP2LocationAPI } from "@/lib/api/location";
+import type { OpenWeatherMapAPICurrentWeather } from "@/lib/api/owm";
 
 export default function CurrentWeatherCard(props: {
   current: OpenWeatherMapAPICurrentWeather;
   location: IP2LocationAPI;
+  isLoading?: boolean;
 }) {
+  if (props.isLoading) {
+    return (
+      <div className="flex flex-col">
+        <div className="flex gap-1 p-4 bg-white border border-black shadow-brutalism rounded-sm self-center items-center">
+          <p className="text-2xl">Loading...</p>
+        </div>
+        <div
+          className={cn("flex", "flex-row", "items-center", "justify-center")}
+        >
+          <WeatherIcon id="01d" size="4x" width={150} height={150} />
+          <div className="flex-col">
+            <p className="text-6xl font-bold">--°</p>
+            <p className="capitalize font-bold">--</p>
+          </div>
+        </div>
+        <div className="flex flex-col items-center">
+          <div className="flex items-center gap-1.5">
+            <DropletIcon className="w-4 h-4 text-gray-500" />
+            <p>Humidity: --%</p>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <WindIcon className="w-4 h-4 text-gray-500" />
+            <p>Wind: -- m/s</p>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <p className="text-[0.7rem]">Updated at: --</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="flex flex-col">
       <div className="flex gap-1 p-4 bg-white border border-black shadow-brutalism rounded-sm self-center items-center">
