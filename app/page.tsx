@@ -1,7 +1,8 @@
 import { headers } from "next/headers";
 import { cn, getUserIP } from "@/lib/utils";
 import { serverEnv } from "@/lib/env";
-import { getAllWeatherDataFromLocation, getUserCityFromIP } from "@/lib/api";
+import { getUserCityFromIP } from "@/lib/api/location";
+import { getAllWeatherDataFromLocation } from "@/lib/api/owm";
 import CurrentWeatherCard from "@/components/CurrentWeatherCard";
 import WeatherForecastCard from "@/components/WeatherForecastCard";
 import MiscSection from "@/components/MiscSection";

@@ -6,11 +6,9 @@ import { serverEnv } from "@/lib/env";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicBackgroundImage from "@/components/DynamicBackgroundImage";
-import {
-  getUserCityFromIP,
-  getAllWeatherDataFromLocation,
-  getRandomUnsplashImageURL,
-} from "@/lib/api";
+import { getUserCityFromIP } from "@/lib/api/location";
+import { getAllWeatherDataFromLocation } from "@/lib/api/owm";
+import { getRandomUnsplashImageURL } from "@/lib/api/unsplash";
 
 import "./globals.css";
 
