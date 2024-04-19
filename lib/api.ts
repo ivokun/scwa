@@ -249,11 +249,21 @@ async function getUnsplashImageURLs(
   }
   return parsed.data;
 }
+async function getRandomUnsplashImageURL(
+  config: APIConfig,
+  query: string,
+  orientation: "landscape" | "portrait" = "landscape",
+): Promise<UnsplashAPI> {
+  const images = await getUnsplashImageURLs(config, query, orientation, 10);
+  const randomIndex = Math.floor(Math.random() * images.length);
+  return images[randomIndex];
+}
 
 export {
   getAllWeatherDataFromLocation,
   getUserCityFromIP,
   getUnsplashImageURLs,
+  getRandomUnsplashImageURL,
 };
 export type {
   IP2LocationAPI,
