@@ -17,24 +17,35 @@ scwa
 │   ├── favicon.ico
 │   ├── globals.css
 │   ├── layout.tsx
+│   ├── loading.tsx
 │   ├── not-found.tsx
 │   └── page.tsx
 ├── components
+│   ├── CurrentWeatherCard.test.tsx
 │   ├── CurrentWeatherCard.tsx
 │   ├── DynamicBackgroundImage.tsx
 │   ├── Footer.tsx
 │   ├── Header.tsx
 │   ├── Icons.tsx
+│   ├── MiscSection.test.tsx
 │   ├── MiscSection.tsx
+│   ├── WeatherForecastCard.test.tsx
 │   ├── WeatherForecastCard.tsx
 │   ├── WeatherIcon.tsx
 │   └── ui
 │       ├── accordion.tsx
-│       └── scroll-area.tsx
+│       ├── button.tsx
+│       ├── input.tsx
+│       ├── scroll-area.tsx
+│       └── skeleton.tsx
 ├── components.json
 ├── lib
 │   ├── advice.ts
-│   ├── api.ts
+│   ├── api
+│   │   ├── location.ts
+│   │   ├── owm.ts
+│   │   ├── unsplash.ts
+│   │   └── utils.ts
 │   ├── env.ts
 │   └── utils.ts
 ├── next-env.d.ts
@@ -43,11 +54,14 @@ scwa
 ├── pnpm-lock.yaml
 ├── postcss.config.mjs
 ├── public
-│   └── bg3_saigetsu0425.jpeg
 ├── sst-env.d.ts
 ├── sst.config.ts
 ├── tailwind.config.ts
-└── tsconfig.json
+├── test
+│   ├── setup.ts
+│   └── utils.ts
+├── tsconfig.json
+└── vitest.config.ts
 ```
 
 ### Directories
@@ -72,7 +86,9 @@ scwa
 
 ## Getting started
 
-### Create a local environment file
+### Running the app locally
+
+#### Create a local environment file
 
 Make a copy of `.env.example` and rename it to `.env.local`. Fill in each variable with the appropriate value. For example,
 
@@ -83,4 +99,47 @@ IP2LOCATION_API_KEY=your_ip2location_api_key
 IP2LOCATION_API_URL=https://api.ip2location.io
 UNSPLASH_API_KEY=your_unsplash_api_key
 UNSPLASH_API_URL=https://api.unsplash.com
+```
+
+#### Install dependencies
+
+```shell
+pnpm install
+```
+
+#### Run the app
+
+```shell
+pnpm dev
+```
+
+The app should now be running on [http://localhost:3000](http://localhost:3000).
+
+#### Running tests
+
+```shell
+pnpm test
+```
+
+## Deploying the app
+
+### Deploying to AWS
+
+#### Pre-requisites
+
+- Configure your AWS credentials using the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html).
+
+#### Deploy the app
+
+Deploy the app using your AWS account.
+
+```shell
+pnpm sst deploy
+```
+
+SST support multiple stages, you can deploy to a specific stage using the `--stage` flag.
+You can also deploy to a specific region using the `--region` flag.
+
+```shell
+pnpm sst deploy --stage prod --region us-east-1
 ```
