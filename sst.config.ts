@@ -1,6 +1,5 @@
 import { SSTConfig } from "sst";
 import { NextjsSite } from "sst/constructs";
-import { serverEnv } from "@/lib/env";
 
 export default {
   config(_input) {
@@ -12,7 +11,7 @@ export default {
   stacks(app) {
     app.stack(function Web({ stack }) {
       const web = new NextjsSite(stack, "web", {
-        warm: 10,
+        warm: 5,
         environment: {
           OPENWEATHERMAP_API_KEY: process.env.OPENWEATHERMAP_API_KEY ?? "",
           OPENWEATHERMAP_API_URL: process.env.OPENWEATHERMAP_API_URL ?? "",

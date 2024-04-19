@@ -1,10 +1,12 @@
+"use client";
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import type { OpenWeatherMapAPIHourly } from "@/lib/api";
+import type { OpenWeatherMapAPIHourly } from "@/lib/api/owm";
 import WeatherIcon from "@/components/WeatherIcon";
 import { cn, parseTimeFromTimestamp, WeatherIconID } from "@/lib/utils";
 

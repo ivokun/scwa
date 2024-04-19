@@ -1,7 +1,8 @@
 import { headers } from "next/headers";
 import { cn, getUserIP } from "@/lib/utils";
 import { serverEnv } from "@/lib/env";
-import { getAllWeatherDataFromLocation, getUserCityFromIP } from "@/lib/api";
+import { getUserCityFromIP } from "@/lib/api/location";
+import { getAllWeatherDataFromLocation } from "@/lib/api/owm";
 import CurrentWeatherCard from "@/components/CurrentWeatherCard";
 import WeatherForecastCard from "@/components/WeatherForecastCard";
 import MiscSection from "@/components/MiscSection";
@@ -26,7 +27,6 @@ export default async function Home() {
   const currentWeatherAdvice = getRandomWeatherAdvice(
     weather.current.weather[0].id,
   );
-
   return (
     <main>
       <div
@@ -34,14 +34,15 @@ export default async function Home() {
           "flex",
           "flex-col",
           "justify-center",
-          "p-4",
+          "px-4",
+          "py-8",
           "gap-6",
           "md:items-center",
           "md:gap-12",
         )}
       >
         <section id="CurrentWeather">
-          <CurrentWeatherCard {...weather.current} />
+          <CurrentWeatherCard current={weather.current} location={location} />
         </section>
         <section id="FiveDaysForecast">
           <WeatherForecastCard {...weather} />
