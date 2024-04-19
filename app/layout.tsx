@@ -7,9 +7,9 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import DynamicBackgroundImage from "@/components/DynamicBackgroundImage";
 import {
-  getUnsplashImageURLs,
   getUserCityFromIP,
   getAllWeatherDataFromLocation,
+  getRandomUnsplashImageURL,
 } from "@/lib/api";
 
 import "./globals.css";
@@ -41,7 +41,7 @@ export default async function RootLayout({
     },
     location,
   );
-  const bgImages = await getUnsplashImageURLs(
+  const bgImages = await getRandomUnsplashImageURL(
     {
       baseURL: serverEnv.UNSPLASH_API_URL,
       apiKey: serverEnv.UNSPLASH_API_ACCESS_KEY,
@@ -52,8 +52,8 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <DynamicBackgroundImage
-          imageURL={bgImages[0].urls.regular}
-          imageColor={bgImages[0].color}
+          imageURL={bgImages.urls.regular}
+          imageColor={bgImages.color}
         >
           <div
             className={cn(
