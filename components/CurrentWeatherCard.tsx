@@ -14,11 +14,8 @@ export default function CurrentWeatherCard(props: {
 }) {
   return (
     <div className="flex flex-col">
-      <div className="flex flex-col gap-1 p-4 bg-white border border-black shadow-brutalism rounded-sm self-center items-center">
+      <div className="flex gap-1 p-4 bg-white border border-black shadow-brutalism rounded-sm self-center items-center">
         <p className="text-2xl">{props.location.city_name}</p>
-        <span className="text-[0.7rem]">
-          Updated at: {parseUpdateTimeFromTimestamp(props.current.dt)}
-        </span>
       </div>
       <div className={cn("flex", "flex-row", "items-center", "justify-center")}>
         <WeatherIcon
@@ -42,6 +39,11 @@ export default function CurrentWeatherCard(props: {
         <div className="flex items-center gap-1.5">
           <WindIcon className="w-4 h-4 text-gray-500" />
           <p>Wind: {props.current.wind_speed} m/s</p>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <p className="text-[0.7rem]">
+            Updated at: {parseUpdateTimeFromTimestamp(props.current.dt)}
+          </p>
         </div>
       </div>
     </div>
