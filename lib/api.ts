@@ -83,18 +83,11 @@ type OpenWeatherMapAPIDaily = z.infer<typeof OpenWeatherMapAPIDailySchema>;
 
 const OpenWeatherMapAPICurrentWeatherSchema = z.object({
   dt: z.number(),
-  sunrise: z.number(),
-  sunset: z.number(),
   temp: z.number().transform(Math.round),
   feels_like: z.number(),
-  pressure: z.number(),
   humidity: z.number(),
-  dew_point: z.number(),
-  uvi: z.number(),
-  clouds: z.number(),
   visibility: z.number(),
   wind_speed: z.number(),
-  wind_deg: z.number(),
   weather: z.array(OpenWeatherMapAPIWeatherSchema).min(1),
 });
 type OpenWeatherMapAPICurrentWeather = z.infer<
