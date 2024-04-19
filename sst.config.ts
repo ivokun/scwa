@@ -11,7 +11,7 @@ export default {
   stacks(app) {
     app.stack(function Web({ stack }) {
       const web = new NextjsSite(stack, "web", {
-        warm: 10,
+        warm: 5,
         environment: {
           OPENWEATHERMAP_API_KEY: process.env.OPENWEATHERMAP_API_KEY ?? "",
           OPENWEATHERMAP_API_URL: process.env.OPENWEATHERMAP_API_URL ?? "",
